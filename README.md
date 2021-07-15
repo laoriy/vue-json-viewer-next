@@ -1,2 +1,2 @@
 # vue-json-viewer-next
-Simple JSON viewer component, for Vue.js3.x
+Simple JSON viewer component, for Vue3.x
