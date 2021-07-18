@@ -1,0 +1,76 @@
+{
+    "name": "vue-json-viewer-next",
+    "version": "0.1.0",
+    "private": false,
+    "description": "simple json viewer with vue3.0",
+    "keyword": "vue-json-viewer vue-json-viewer-next json-viewer",
+    "homepage": "https://github.com/laoriy/vue-json-viewer-next#readme",
+    "main": "dist/index.js",
+    "files": [
+        "dist"
+    ],
+    "author": {
+        "name": "laor",
+        "email": "2680406465@qq.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/laoriy/vue-json-viewer-next/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/laoriy/vue-json-viewer-next.git"
+    },
+    "contributors": [
+        {
+            "name": "laor",
+            "email": "2680406465@qq.com"
+        }
+    ],
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build:browser": "webpack --config ./build/webpack.config.js",
+        "lint": "vue-cli-service lint"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "clipboard": "^2.0.8",
+        "core-js": "^3.6.5",
+        "vue": "3.1.1",
+        "@vue/cli-plugin-babel": "~4.5.0",
+        "@vue/cli-plugin-eslint": "~4.5.0",
+        "@vue/cli-service": "~4.5.0",
+        "@vue/compiler-sfc": "^3.0.0",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^6.7.2",
+        "eslint-plugin-vue": "^7.0.0",
+        "sass": "^1.35.1",
+        "sass-loader": "^10.0.1",
+        "style-loader": "^1.2.1",
+        "postcss-loader": "^3.0.0",
+        "uglifyjs-webpack-plugin": "^2.2.0",
+        "vue-loader": "16.1.2",
+        "vue-template-compiler": "2.6.12",
+        "webpack-cli": "^4.7.2",
+        "terser-webpack-plugin": "^4.2.3"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/vue3-essential",
+            "eslint:recommended"
+        ],
+        "parserOptions": {
+            "parser": "babel-eslint"
+        },
+        "rules": {}
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
+}
