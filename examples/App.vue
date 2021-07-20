@@ -1,53 +1,47 @@
 <template>
     <div>
-                <json-viewer
-                    preview-mode
-                    :value="{
+        <json-viewer
+            preview-mode
+            :value="{
+                data: {
+                    data: {
                         data: {
-                            data: {
-                                data: {
-                                    a: 1,
-                                },
-                            },
+                            a: 1,
                         },
-                    }"
-                ></json-viewer>
-                <json-viewer :value="jsonData"></json-viewer>
-                <hr />
-                <json-viewer
-                    :value="jsonData"
-                    :expand-depth="5"
-                    :copyable="{
-                        copyText: '复制',
-                        copiedText: '复制成功',
-                        align: 'left',
-                    }"
-                    boxed
-                    :timeformat="(time) => new Date(time)"
-                    sort
-                ></json-viewer>
-                <hr />
-                <json-viewer
-                    :value="jsonData"
-                    :expand-depth="1"
-                    :copyable="{
-                        timeout: 4000,
-                        align: 'left',
-                    }"
-                    #copy="{ copied }"
-                    @copied="onCopied"
-                >
-                    <button v-if="copied" disabled>Copied!</button>
-                    <button v-else>Copy me!</button>
-                </json-viewer>
-                <jsonViewer
-                    :value="jsonData"
-                    :expand-depth="5"
-                    copyable
-                    boxed
-                    showFunctionBody
-                />
-            </div>
+                    },
+                },
+            }"
+        ></json-viewer>
+        <json-viewer :value="jsonData"></json-viewer>
+        <hr />
+        <json-viewer
+            :value="jsonData"
+            :expand-depth="5"
+            :copyable="{
+                copyText: '复制',
+                copiedText: '复制成功',
+                align: 'left',
+            }"
+            boxed
+            :timeformat="(time) => new Date(time)"
+            sort
+        ></json-viewer>
+        <hr />
+        <json-viewer
+            :value="jsonData"
+            :expand-depth="1"
+            :copyable="{
+                timeout: 4000,
+                align: 'left',
+            }"
+            #copy="{ copied }"
+            @copied="onCopied"
+        >
+            <button v-if="copied" disabled>Copied!</button>
+            <button v-else>Copy me!</button>
+        </json-viewer>
+        <jsonViewer :value="jsonData" :expand-depth="5" copyable boxed showFunctionBody />
+    </div>
 </template>
 
 <script lang="ts">
@@ -55,71 +49,11 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
     el: '#app',
-    // render() {
-    //     const scopedSlots = {
-    //         copy: ({ copied }: { copied: boolean }) => {
-    //             if (copied) return <button disabled>Copied!</button>;
-    //             return <button>Copy me!</button>;
-    //         },
-    //     };
-    //     const onCopied = (copyEvent: { text: string }) => {
-    //         // eslint-disable-next-line no-alert
-    //         alert(`Text successfully copied!\n${copyEvent.text}`);
-    //     };
-    //     return (
-    //         <div>
-    //             <json-viewer
-    //                 preview-mode
-    //                 value={{
-    //                     data: {
-    //                         data: {
-    //                             data: {
-    //                                 a: 1,
-    //                             },
-    //                         },
-    //                     },
-    //                 }}
-    //             ></json-viewer>
-    //             <json-viewer value={this.jsonData}></json-viewer>
-    //             <hr />
-    //             <json-viewer
-    //                 value={this.jsonData}
-    //                 expand-depth={5}
-    //                 copyable={{
-    //                     copyText: '复制',
-    //                     copiedText: '复制成功',
-    //                     align: 'left',
-    //                 }}
-    //                 boxed
-    //                 timeformat={(time: Date) => new Date(time)}
-    //                 sort
-    //             ></json-viewer>
-    //             <hr />
-    //             <json-viewer
-    //                 value={this.jsonData}
-    //                 expand-depth={1}
-    //                 copyable={{
-    //                     timeout: 4000,
-    //                     align: 'left',
-    //                 }}
-    //                 scopedSlots={scopedSlots}
-    //                 onCopied={onCopied}
-    //             ></json-viewer>
-    //             <jsonViewer
-    //                 value={this.jsonData}
-    //                 expand-depth={5}
-    //                 copyable
-    //                 boxed
-    //                 showFunctionBody
-    //             />
-    //         </div>
-    //     );
-    // },
-    methods:{
+    methods: {
         onCopied(copyEvent: { text: string }) {
             // eslint-disable-next-line no-alert
             alert(`Text successfully copied!\n${copyEvent.text}`);
-        }
+        },
     },
     data() {
         return {
