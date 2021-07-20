@@ -1,15 +1,17 @@
+// eslint配置
 module.exports = {
     root: true,
     env: {
         node: true,
     },
     extends: [
-        'plugin:vue/vue3-essential',
+        'plugin:vue/essential',
+        'plugin:prettier/recommended',
         '@vue/airbnb',
-        '@vue/typescript/recommended',
+        '@vue/typescript',
     ],
     parserOptions: {
-        ecmaVersion: 2020,
+        parser: '@typescript-eslint/parser',
     },
     rules: {
         'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
@@ -30,23 +32,23 @@ module.exports = {
         'operator-linebreak': 0,
         'guard-for-in': 0,
         'import/no-webpack-loader-syntax': 0,
+        'import/no-extraneous-dependencies': 0,
+        'function-paren-newline': 0,
+        'import/extensions': 0,
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': 2,
 
         // 不安全项
         'no-param-reassign': 0,
 
-        // js项目开启检查
-        'no-dupe-class-members': 0,
-
+        'no-dupe-class-members': 2,
         // 提示警告
         'no-return-await': 1,
         'import/no-cycle': 1,
         'no-nested-ternary': 1,
         'no-new-func': 1,
         'vue/no-side-effects-in-computed-properties': 1,
-        'vue/no-multiple-template-root': 'off', // vue3 模板可以有多个根结点
-        'vue/valid-template-root': 'off',
-        'vue/no-v-for-template-key': 'off', // vue3  v-for 中template 可以设置key
-        'import/no-extraneous-dependencies': 1,
+        'vue/valid-template-root': 1,
         'no-continue': 1,
         'operator-assignment': 1,
         'no-bitwise': 1,
@@ -68,4 +70,12 @@ module.exports = {
         'arrow-parens': [2, 'always', { requireForBlockBody: false }],
         'implicit-arrow-linebreak': [0, 'beside'],
     },
+    overrides: [
+        {
+            files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
+            env: {
+                jest: true,
+            },
+        },
+    ],
 };
