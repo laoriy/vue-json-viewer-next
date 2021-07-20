@@ -1,10 +1,10 @@
 <script>
-import * as Vue from 'vue';
+import { defineComponent, h } from 'vue';
 import { plantRenderPara } from '../utils';
 
 const REG_LINK = /^\w+:\/\//;
 
-export default {
+export default defineComponent({
     name: 'JsonString',
     props: {
         jsonValue: {
@@ -65,9 +65,9 @@ export default {
             }
         }
 
-        return Vue.h('span', {}, [
+        return h('span', {}, [
             this.canExtend &&
-                Vue.h(
+                h(
                     'span',
                     plantRenderPara({
                         class: {
@@ -79,7 +79,7 @@ export default {
                         },
                     })
                 ),
-            Vue.h(
+            h(
                 'span',
                 plantRenderPara({
                     class: {
@@ -88,8 +88,8 @@ export default {
                     ref: 'holderRef',
                 })
             ),
-            Vue.h('span', plantRenderPara(domItem)),
+            h('span', plantRenderPara(domItem)),
         ]);
     },
-};
+});
 </script>

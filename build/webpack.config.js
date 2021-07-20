@@ -1,11 +1,10 @@
 const path = require('path');
-const { VueLoaderPlugin } = require('vue-loader')
+const { VueLoaderPlugin } = require('vue-loader');
 const TerserPlugin = require('terser-webpack-plugin');
-
 
 module.exports = {
     mode: 'production',
-    entry: './lib/index.js',
+    entry: './lib/index',
     optimization: {
         minimizer: [
             new TerserPlugin({
@@ -30,13 +29,14 @@ module.exports = {
         globalObject: 'this'
     },
     resolve: {
-        extensions: ['.js', '.vue'],
+        extensions: ['.js', '.vue', '.ts', '.tsx'],
         modules: [
             'node_modules'
         ]
     },
     externals: {
         vue: 'vue',
+        'core-js': 'core-js',
         clipboard: 'clipboard'
     },
     module: {
@@ -45,6 +45,17 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.tsx?$/,
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true
+                        }
+                    }
+                ]
             },
             {
                 test: /\.s?css$/,
@@ -69,4 +80,4 @@ module.exports = {
     plugins: [
         new VueLoaderPlugin()
     ]
-}
+};

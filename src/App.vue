@@ -1,18 +1,19 @@
-import { createApp } from 'vue'
-import JsonViewer from '../dist'
+<script lang="tsx">
+import { defineComponent } from 'vue';
 
-const app = createApp({
+export default defineComponent({
     el: '#app',
     render() {
         const scopedSlots = {
-            copy: ({ copied }) => {
-                if (copied) return <button disabled>Copied!</button>
-                return <button>Copy me!</button>
+            copy: ({ copied }: { copied: boolean }) => {
+                if (copied) return <button disabled>Copied!</button>;
+                return <button>Copy me!</button>;
             },
-        }
-        const onCopied = (copyEvent) => {
+        };
+        const onCopied = (copyEvent: { text: string }) => {
+            // eslint-disable-next-line no-alert
             alert(`Text successfully copied!\n${copyEvent.text}`);
-        }
+        };
         return (
             <div>
                 <json-viewer
@@ -21,11 +22,12 @@ const app = createApp({
                         data: {
                             data: {
                                 data: {
-                                    a: 1
-                                }
-                            }
-                        }
-                    }}></json-viewer>
+                                    a: 1,
+                                },
+                            },
+                        },
+                    }}
+                ></json-viewer>
                 <json-viewer value={this.jsonData}></json-viewer>
                 <hr />
                 <json-viewer
@@ -34,24 +36,32 @@ const app = createApp({
                     copyable={{
                         copyText: '复制',
                         copiedText: '复制成功',
-                        align: 'left'
+                        align: 'left',
                     }}
                     boxed
-                    timeformat={time => new Date(time)}
-                    sort></json-viewer>
+                    timeformat={(time: Date) => new Date(time)}
+                    sort
+                ></json-viewer>
                 <hr />
                 <json-viewer
                     value={this.jsonData}
                     expand-depth={1}
                     copyable={{
                         timeout: 4000,
-                        align: 'left'
+                        align: 'left',
                     }}
                     scopedSlots={scopedSlots}
-                    onCopied={onCopied}></json-viewer>
-                <jsonViewer value={this.jsonData} expand-depth={5} copyable boxed />
+                    onCopied={onCopied}
+                ></json-viewer>
+                <jsonViewer
+                    value={this.jsonData}
+                    expand-depth={5}
+                    copyable
+                    boxed
+                    showFunctionBody
+                />
             </div>
-        )
+        );
     },
     data() {
         return {
@@ -63,7 +73,9 @@ const app = createApp({
                 success: true,
                 links: {
                     previous: undefined,
-                    next: function () { },
+                    next() {
+                        console.log('next');
+                    },
                 },
                 data: [
                     {
@@ -72,13 +84,10 @@ const app = createApp({
                         link: 'http://google.com',
                         lastname: 'Lovelace',
                         awards: null,
-                        known: [
-                            'mathematics',
-                            'computing'
-                        ],
+                        known: ['mathematics', 'computing'],
                         position: {
                             lat: 44.563836,
-                            lng: 6.495139
+                            lng: 6.495139,
                         },
                         description: `Augusta Ada King, Countess of Lovelace (née Byron; 10 December 1815 – 27 November 1852) was an English mathematician and writer,
               chiefly known for her work on Charles Babbage's proposed mechanical general-purpose computer,
@@ -86,8 +95,9 @@ const app = createApp({
               and published the first algorithm intended to be carried out by such a machine.
               As a result, she is sometimes regarded as the first to recognise the full potential of a "computing machine" and the first computer programmer.`,
                         bornAt: new Date('1815-12-10T00:00:00.000Z'),
-                        diedAt: new Date('1852-11-27T00:00:00.000Z')
-                    }, {
+                        diedAt: new Date('1852-11-27T00:00:00.000Z'),
+                    },
+                    {
                         id: '5968fcad629fa84ab65a5246',
                         firstname: 'Grace',
                         lastname: 'Hopper',
@@ -100,12 +110,12 @@ const app = createApp({
                             'National Defense Service Medal',
                             'Armed Forces Reserve Medal',
                             'Naval Reserve Medal',
-                            'Presidential Medal of Freedom'
+                            'Presidential Medal of Freedom',
                         ],
                         known: null,
                         position: {
                             lat: 43.614624,
-                            lng: 3.879995
+                            lng: 3.879995,
                         },
                         description: `Grace Brewster Murray Hopper (née Murray; December 9, 1906 – January 1, 1992)
               was an American computer scientist and United States Navy rear admiral.
@@ -114,12 +124,11 @@ const app = createApp({
               She popularized the idea of machine-independent programming languages, which led to the development of COBOL,
               an early high-level programming language still in use today.`,
                         bornAt: new Date('1815-12-10T00:00:00.000Z'),
-                        diedAt: new Date('1852-11-27T00:00:00.000Z')
-                    }
-                ]
-            }
-        }
-    }
-})
-
-app.use(JsonViewer).mount('#app')
+                        diedAt: new Date('1852-11-27T00:00:00.000Z'),
+                    },
+                ],
+            },
+        };
+    },
+});
+</script>

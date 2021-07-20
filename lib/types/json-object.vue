@@ -1,9 +1,10 @@
 <script>
 import * as Vue from 'vue';
+import { defineComponent } from 'vue';
 import JsonBox from '../json-box.vue';
 import { plantRenderPara } from '../utils';
 
-export default {
+export default defineComponent({
     name: 'JsonObject',
     props: {
         jsonValue: {
@@ -178,5 +179,5 @@ export default {
         return Vue.h('span', elements);
     },
     emits: ['update:expand'],
-};
+});
 </script>

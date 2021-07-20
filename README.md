@@ -1,4 +1,4 @@
-# vue-json-viewer-next
+# vue-json-viewer-next2
 
 ## Project setup
 ```
