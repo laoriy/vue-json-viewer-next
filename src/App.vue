@@ -50,7 +50,7 @@ export default defineComponent({
                         timeout: 4000,
                         align: 'left',
                     }}
-                    scopedSlots={scopedSlots}
+                    v-slots={scopedSlots}
                     onCopied={onCopied}
                 ></json-viewer>
                 <jsonViewer
