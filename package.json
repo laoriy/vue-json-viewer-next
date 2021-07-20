@@ -6,7 +6,7 @@
     "keyword": "vue-json-viewer vue-json-viewer-next json-viewer",
     "homepage": "https://github.com/laoriy/vue-json-viewer-next#readme",
     "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "typings": "types/index.d.ts",
     "files": [
         "dist"
     ],
@@ -35,7 +35,8 @@
     "dependencies": {
         "clipboard": "^2.0.8",
         "core-js": "^3.6.5",
-        "vue": "3.1.1"
+        "vue": "3.1.1",
+        "aqara-json-viewer-next": "1.0.0"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^4.18.0",
