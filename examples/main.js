@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import JsonViewer from '../dist/dist/vue-json-viewer-next.min';
+import JsonViewer from '../src/index';
 
 import App from './AppJsx.vue';
 // import App from './App.vue';

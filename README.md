@@ -121,7 +121,7 @@ defineComponent({
 | `expanded` | Default expand the view | `false` |
 | `timeformat` | custom time format function | time => time.toLocaleString() |
 | `preview-mode` | no expand mode | `false` |
-| `showFunctionBody` | no expand mode | `false` |
+| `show-function-body` | no expand mode | `false` |
 
 ## Listeners
 
