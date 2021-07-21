@@ -1,12 +1,12 @@
 {
-    "name": "aqara-json-viewer-next",
+    "name": "vue-json-viewer-next",
     "version": "1.0.0",
-    "description": "aqara-json-viewer-next, a table component based on Vue 3.x",
-    "main": "dist/aqara-json-viewer-next.js",
+    "description": "vue-json-viewer-next, a table component based on Vue 3.x",
+    "main": "dist/vue-json-viewer-next.js",
     "typings": "types/index.d.ts",
     "keywords": [
         "aqara",
-        "aqara-json-viewer-next",
+        "vue-json-viewer-next",
         "json-view",
         "json",
         "vue component",

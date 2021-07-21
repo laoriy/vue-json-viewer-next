@@ -1,11 +1,17 @@
 // 基础配置
-const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 
+const tsLoaders = [
+    {
+        loader: 'cache-loader',
+        options: {},
+    },
 
-function resolve(dir) {
-    return path.join(__dirname, '..', dir);
-}
+    {
+        loader: 'babel-loader',
+        options: {},
+    },
+]
 
 module.exports = {
     module: {
@@ -16,21 +22,28 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(ts|tsx)$/,
+                test: /\.(ts)$/,
                 use: [
-                    {
-                        loader: 'cache-loader',
-                        options: {},
-                    },
-                    {
-                        loader: 'babel-loader',
-                        options: {},
-                    },
+                    ...tsLoaders,
                     {
                         loader: 'ts-loader',
                         options: {
                             transpileOnly: true,
                             appendTsSuffixTo: [/\.vue$/],
+                            happyPackMode: false,
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.(tsx)$/,
+                use: [
+                    ...tsLoaders,
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true,
+                            appendTsxSuffixTo: [/\.vue$/],// 支持vue中使用tsx语法
                             happyPackMode: false,
                         },
                     },

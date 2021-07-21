@@ -1,7 +1,7 @@
 {
-    "name": "aqara-json-viewer-next",
+    "name": "vue-json-viewer-next",
     "version": "1.0.2",
-    "description": "aqara-json-viewer-next, a component development project based on Vue 3.x",
+    "description": "vue-json-viewer-next, a component development project based on Vue 3.x",
     "main": "index.js",
     "scripts": {
         "build:dev": "webpack --config build/webpack.dist.dev.config.js",
@@ -14,15 +14,6 @@
         "lint": "vue-cli-service lint",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "keywords": [
-        "Aqara",
-        "Aqara-component",
-        "vue",
-        "vue component",
-        "vueComponent",
-        "component",
-        "json-view"
-    ],
     "author": "",
     "license": "MIT",
     "devDependencies": {

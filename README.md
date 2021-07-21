@@ -1,147 +1,196 @@
-## aqara-json-viewer-next
+# vue-json-viewer-next
 
-> A table component based on Vue 3.x.
+Simple JSON viewer component, for Vue.js 3.
 
-### Project setup
+Support for incremental update components
 
+## Installing
+Using npm:
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development components
-
-```
-npm run dev
+$ npm install vue-json-viewer-next --save
 ```
 
-or
-
+Using yarn:
 ```
-npm run serve
-```
-
-### Compiles and minifies for production components(npm)
-
-```
-npm run build
+$ yarn add vue-json-viewer-next
 ```
 
-### Lints and fixes files
+## Example
 
-```
-npm run lint
-```
+``` html
+<json-viewer :value="jsonData"></json-viewer>
 
-### Project directory
+<hr />
 
-```
-| -- build 项目构建文件
-    | -- bin node执行文件
-        | -- ...
-    | -- ...
-
-| -- dist npm组件的发布包源文件
-    | -- dist 组件发布编译文件
-        | -- **.js
-        | -- **.js.map
-        | -- **.min.js
-        | -- **.min.js.map
-        | -- ...
-    | -- src 组件源文件
-        | -- **.vue
-        | -- ...
-        | -- index.ts
-    | -- types 组件ts声明
-        | -- **.d.ts
-        | -- index.d.ts
-    | -- package.json
-    | -- README.md
-
-| -- examples npm组件的本地测试
-    | -- routers 组件测试文件
-        | -- **.vue
-        | -- ......
-    | -- index.html 页面入口
-    | -- App.vue
-    | -- main.js 入口文件
-    | -- ......
-
-| -- src npm组件源文件
-    | -- types 组件ts声明
-        | -- msg.d.ts
-        | -- index.d.ts
-
-    | -- **.vue
-    | -- ......
-    | -- index.ts 组件出口
-    | -- package.json
-    | -- README.md
-
-    | -- types 各组件的TS类型声明
-        | -- shims-tsx.d.ts Vue使用tsx语法声明
-        | -- shims-vue.d.ts Vue生态插件语法声明
-        | -- vue-prototype.d.ts 项目自定义Vue属性声明
-        | -- ......
-
-    | -- utils 组件依赖的公共方法等
-        | -- ......
-
-| -- test 项目单元测试文件
-
-| -- .editorconfig 编译器配置(vscode)
-
-| -- .eslintrc.js eslint代码检查配置
-
-| -- .gitignore git提交忽略
-
-| -- .babelrc 项目babel转码配置
-
-| -- package.json 项目依赖
-
-| -- tsconfig.json 项目ts代码编译配置
+<json-viewer
+  :value="jsonData"
+  :expand-depth=5
+  copyable
+  boxed
+  sort></json-viewer>
 ```
 
-### Project Guide
+``` js
+import JsonViewer from 'vue-json-viewer'
 
--   组件文件夹结构及组件命名
+// Import JsonViewer as a Vue.js plugin
+app.use(JsonViewer)
+// or 
+// components: {JsonViewer}
 
-1、组件文件夹结构需严格遵下如下通用结构:
 
+defineComponent({
+  el: '#app',
+  data() {
+    return {
+      jsonData: {
+        total: 25,
+        limit: 10,
+        skip: 0,
+        links: {
+          previous: undefined,
+          next: function () {},
+        },
+        data: [
+          {
+            id: '5968fcad629fa84ab65a5247',
+            firstname: 'Ada',
+            lastname: 'Lovelace',
+            awards: null,
+            known: [
+              'mathematics',
+              'computing'
+            ],
+            position: {
+              lat: 44.563836,
+              lng: 6.495139
+            },
+            description: `Augusta Ada King, Countess of Lovelace (née Byron; 10 December 1815 – 27 November 1852) was an English mathematician and writer,
+            chiefly known for her work on Charles Babbage's proposed mechanical general-purpose computer,
+            the Analytical Engine. She was the first to recognise that the machine had applications beyond pure calculation,
+            and published the first algorithm intended to be carried out by such a machine.
+            As a result, she is sometimes regarded as the first to recognise the full potential of a "computing machine" and the first computer programmer.`,
+            bornAt: '1815-12-10T00:00:00.000Z',
+            diedAt: '1852-11-27T00:00:00.000Z'
+          }, {
+            id: '5968fcad629fa84ab65a5246',
+            firstname: 'Grace',
+            lastname: 'Hopper',
+            awards: [
+              'Defense Distinguished Service Medal',
+              'Legion of Merit',
+              'Meritorious Service Medal',
+              'American Campaign Medal',
+              'World War II Victory Medal',
+              'National Defense Service Medal',
+              'Armed Forces Reserve Medal',
+              'Naval Reserve Medal',
+              'Presidential Medal of Freedom'
+            ],
+            known: null,
+            position: {
+              lat: 43.614624,
+              lng: 3.879995
+            },
+            description: `Grace Brewster Murray Hopper (née Murray; December 9, 1906 – January 1, 1992)
+            was an American computer scientist and United States Navy rear admiral.
+            One of the first programmers of the Harvard Mark I computer,
+            she was a pioneer of computer programming who invented one of the first compiler related tools.
+            She popularized the idea of machine-independent programming languages, which led to the development of COBOL,
+            an early high-level programming language still in use today.`,
+            bornAt: '1815-12-10T00:00:00.000Z',
+            diedAt: '1852-11-27T00:00:00.000Z'
+          }
+        ]
+      }
+    }
+  }
+})
 ```
-| -- src
-        | -- types 组件ts声明
-            | -- **.d.ts
-            | -- **.d.ts
-            | -- index.d.ts
-        | -- **.vue
-        | -- index.ts 组件出口
-        | -- package.json
-        | -- README.md
-        | -- ......
-```
 
--   组件本地测试
+## Options
 
-1、参见`examples`内测试代码
+| Property | Description | Default |
+| ----------- |:------------- | ----------- |
+| `value` | JSON data (can be used with `v-model`) | **Required** |
+| `expand-depth` | Collapse blocs under this depth | `1`  |
+| `copyable` | Display the copy button, you can customize copy text just set `{copyText: 'copy', copiedText: 'copied', timeout: 2000}` or set `true` use default copytext  | `false`  |
+| `sort` | Sort keys before displaying | `false` |
+| `boxed` | Add a fancy "boxed" style to component | `false` |
+| `theme` | Add a custom CSS class for theming purposes | `jv-light` |
+| `expanded` | Default expand the view | `false` |
+| `timeformat` | custom time format function | time => time.toLocaleString() |
+| `preview-mode` | no expand mode | `false` |
+| `showFunctionBody` | no expand mode | `false` |
 
-2、**组件依赖的第三方插件需事先安装为`devDependencies`包，并非`dependencies`包**
+## Listeners
 
--   组件生产环境构建
+| Listener | Description | Value |
+| ----------- |:------------- | ----------- |
+| `copied` | Emits copyEvent after text copied | Clipboard success event |
 
-1、组件的`package.json`必须指定 npm 的`main`入口,ts 声明的`typings`入口及`name`、`version`等信息
+## Slots
 
-2、若组件有依赖的第三方插件，需在`package.json`内同时指定`peerDependencies`、`dependencies`
+| Name | Description | Scope |
+| ----------- |:------------- | ----------- |
+| `copy` | Custom content for copy button | `{copied: boolean}` |
 
--   组件发布到 npm 私服
+## Theming
 
-```
-// 1、构建组件
-npm run build
+To create custom theme, (e.g. `my-awesome-json-theme`), in two easy steps:
+1. add `theme="my-awesome-json-theme"` to the JsonViewer component
+2. copy-pasta and customize this SCSS template:
 
-// 2、发布组件
-cd dist
+``` scss
+// values are default one from jv-light template
+.my-awesome-json-theme {
+  background: #fff;
+  white-space: nowrap;
+  color: #525252;
+  font-size: 14px;
+  font-family: Consolas, Menlo, Courier, monospace;
 
-npm login --registry http://172.16.100.47:4873
-
-npm publish
+  .jv-ellipsis {
+    color: #999;
+    background-color: #eee;
+    display: inline-block;
+    line-height: 0.9;
+    font-size: 0.9em;
+    padding: 0px 4px 2px 4px;
+    border-radius: 3px;
+    vertical-align: 2px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .jv-button { color: #49b3ff }
+  .jv-key { color: #111111 }
+  .jv-item {
+    &.jv-array { color: #111111 }
+    &.jv-boolean { color: #fc1e70 }
+    &.jv-function { color: #067bca }
+    &.jv-number { color: #fc1e70 }
+    &.jv-number-float { color: #fc1e70 }
+    &.jv-number-integer { color: #fc1e70 }
+    &.jv-object { color: #111111 }
+    &.jv-undefined { color: #e08331 }
+    &.jv-string {
+      color: #42b983;
+      word-break: break-word;
+      white-space: normal;
+    }
+  }
+  .jv-code {
+    .jv-toggle {
+      &:before {
+        padding: 0px 2px;
+        border-radius: 2px;
+      }
+      &:hover {
+        &:before {
+          background: #eee;
+        }
+      }
+    }
+  }
+}
 ```

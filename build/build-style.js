@@ -12,7 +12,7 @@ const styleDir = path.resolve(__dirname, subDir);
 
 const doneHandler = (done) => {
     done();
-    logSuccess("\nFinish builded styles, and compiled component 'aqara-json-viewer-next' successfully.\n");
+    logSuccess("\nFinish builded styles, and compiled component 'vue-json-viewer-next' successfully.\n");
     logHint("Now, you can cd to 'dist' and run 'npm publish' to publish.");
 };
 
