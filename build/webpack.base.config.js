@@ -93,7 +93,22 @@ module.exports = {
                 use: [{
                     loader: 'vue-loader'
                 }]
-            }
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 4096,
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.css$/,
+                use: ['vue-style-loader', 'style-loader', 'css-loader', 'postcss-loader'],
+            },
         ]
     },
     resolve: {
